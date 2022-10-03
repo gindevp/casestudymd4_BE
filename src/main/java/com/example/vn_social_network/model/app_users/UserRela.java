@@ -1,7 +1,6 @@
-package com.example.vn_social_network.model.users;
+package com.example.vn_social_network.model.app_users;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -18,10 +17,10 @@ public class UserRela {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(targetEntity = Users.class)
-    private List<Users> follower;
-    @OneToMany(targetEntity = Users.class)
-    private List<Users> following;
+    @OneToMany(targetEntity = AppUsers.class)
+    private List<AppUsers> follower;
+    @OneToMany(targetEntity = AppUsers.class)
+    private List<AppUsers> following;
 
 
 }
