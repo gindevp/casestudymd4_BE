@@ -1,4 +1,4 @@
-package com.example.vn_social_network.model.users;
+package com.example.vn_social_network.model.app_users;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +15,13 @@ public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean is_active;
-    private String study_at;
-    private String working_at;
+    private boolean isActive;
+    private String studyAt;
+    private String workingAt;
     private String favorites;
-    private String other_info;
-    private Date date_of_birth;
-    private Date created_at;
+    private String otherInfo;
+    private Date dateOfBirth;
+    private Date createdAt;
     @OneToOne
-    private Users users;
+    private AppUsers appUsers;
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Access_modifier {
+public class AccessModifier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
