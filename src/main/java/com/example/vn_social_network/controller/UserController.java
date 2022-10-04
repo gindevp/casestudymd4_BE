@@ -36,10 +36,13 @@ public class UserController {
 // http://localhost:8080/api/users/register
     @PostMapping("/register")
     public ResponseEntity<AppUsers> addUser(@RequestBody Optional<AppUsers> users){
-        if(!users.isPresent()){
-            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        if(users.isPresent()){
+            if(!userService.existsByUserName(users.get().getUserName())){
+                return new ResponseEntity<>(userService.save(users.get()), HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<>(userService.save(users.get()), HttpStatus.CREATED);
+        return new ResponseEntity<>( HttpStatus.NOT_FOUND);
     }
     // http://localhost:8080/api/users/edit/{id}
     @PutMapping("/edit/{id}")
