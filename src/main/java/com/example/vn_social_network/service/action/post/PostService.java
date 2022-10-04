@@ -1,4 +1,4 @@
-package com.example.vn_social_network.service.action;
+package com.example.vn_social_network.service.action.post;
 
 import com.example.vn_social_network.model.action.Posts;
 import com.example.vn_social_network.repository.IPostsRepository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class PostService implements IPostService{
+public class PostService implements IPostService {
 
     @Autowired
     private IPostsRepository postsRepository;

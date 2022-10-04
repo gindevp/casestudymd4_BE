@@ -2,7 +2,7 @@ package com.example.vn_social_network.controller.action;
 
 import com.example.vn_social_network.model.action.Posts;
 import com.example.vn_social_network.model.action.PostsForm;
-import com.example.vn_social_network.service.action.IPostService;
+import com.example.vn_social_network.service.action.post.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;

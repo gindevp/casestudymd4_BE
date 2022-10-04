@@ -1,4 +1,4 @@
-package com.example.vn_social_network.service.comments;
+package com.example.vn_social_network.service.action.comments;
 
 import com.example.vn_social_network.model.action.Comments;
 import com.example.vn_social_network.service.IGeneralService;
