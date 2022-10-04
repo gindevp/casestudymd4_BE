@@ -1,5 +1,6 @@
 package com.example.vn_social_network.model.app_users;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -18,8 +19,10 @@ public class UserRela {
     private Long id;
 
     @OneToMany(targetEntity = AppUsers.class)
+    @JsonManagedReference
     private List<AppUsers> follower;
     @OneToMany(targetEntity = AppUsers.class)
+    @JsonManagedReference
     private List<AppUsers> following;
 
 

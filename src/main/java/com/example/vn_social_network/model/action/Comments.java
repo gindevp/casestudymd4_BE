@@ -1,6 +1,7 @@
 package com.example.vn_social_network.model.action;
 
 import com.example.vn_social_network.model.app_users.AppUsers;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -19,10 +20,12 @@ public class Comments {
 
     @ManyToOne
     @JoinColumn(name = "users_id")
+    @JsonBackReference
     private AppUsers users;
 
     @ManyToOne
     @JoinColumn(name = "posts_id")
+    @JsonBackReference
     private Posts posts;
 
     private String cmtContent;

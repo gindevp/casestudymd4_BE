@@ -1,5 +1,6 @@
 package com.example.vn_social_network.model.action;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class AccessModifier {
     private String name;
 
     @OneToMany(targetEntity = Posts.class)
+    @JsonManagedReference
     private List<Posts> posts;
 
     public AccessModifier() {

@@ -2,8 +2,10 @@ package com.example.vn_social_network.model.app_users;
 
 import com.example.vn_social_network.model.action.Comments;
 import com.example.vn_social_network.model.action.Likes;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -28,6 +30,7 @@ public class AppUsers {
     private String email;
     private String avatarUrl;
     @ManyToOne
+    @JsonBackReference
     private AppRoles appRoles;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userInfo_id", referencedColumnName = "id")
@@ -35,13 +38,16 @@ public class AppUsers {
 
     @ManyToOne
     @JoinColumn(name = "likes_id")
+    @JsonBackReference
     private Likes likes;
 
     @ManyToOne
     @JoinColumn(name ="userRela_id" )
+    @JsonBackReference
     private UserRela userRela;
 
     @OneToMany(targetEntity = Comments.class)
+    @JsonManagedReference
     private List<Comments> comments;
 
 
