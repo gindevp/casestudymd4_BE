@@ -30,7 +30,6 @@ public class Posts {
     @OneToMany(targetEntity = Likes.class)
     private List<Likes> likes;
 
-
     @OneToMany(targetEntity = Comments.class)
     private List<Comments> comments;
 }
