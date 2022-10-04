@@ -1,6 +1,7 @@
 package com.example.vn_social_network.model.action;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class Posts {
     private Long id;
     private String content;
     @OneToMany(targetEntity = Img.class)
+    @JsonManagedReference
     private List<String> img;
     private int likeCount;
     private LocalDateTime postTime;
@@ -29,9 +31,11 @@ public class Posts {
     private AccessModifier accessModifier;
 
     @OneToMany(targetEntity = Likes.class)
+    @JsonManagedReference
     private List<Likes> likes;
 
     @OneToMany(targetEntity = Comments.class)
+    @JsonManagedReference
     private List<Comments> comments;
 
     public Posts() {

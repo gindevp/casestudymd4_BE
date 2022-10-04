@@ -1,5 +1,6 @@
 package com.example.vn_social_network.model.action;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -18,5 +19,6 @@ public class Img {
 
     @ManyToOne
     @JoinColumn(name = "posts_id" )
+    @JsonBackReference
     private Posts posts;
 }
