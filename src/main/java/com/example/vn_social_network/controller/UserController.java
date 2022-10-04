@@ -1,6 +1,7 @@
 package com.example.vn_social_network.controller;
 
-import com.example.vn_social_network.model.users.Users;
+
+import com.example.vn_social_network.model.app_users.AppUsers;
 import com.example.vn_social_network.service.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,11 @@ public class UserController {
 //        return new ModelAndView("user");
 //    }
     @GetMapping
-    public ResponseEntity<Iterable<Users>> showList(){
+    public ResponseEntity<Iterable<AppUsers>> showList(){
         return new ResponseEntity<>(userService.findAll(),HttpStatus.OK);
     }
     @PostMapping("/register")
-    public ResponseEntity<Users> addUser(@RequestBody Optional<Users> users){
+    public ResponseEntity<AppUsers> addUser(@RequestBody Optional<AppUsers> users){
         if(users.isPresent()){
             return new ResponseEntity<>(userService.save(users.get()), HttpStatus.CREATED);
         }

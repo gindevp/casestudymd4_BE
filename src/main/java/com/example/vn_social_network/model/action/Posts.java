@@ -12,14 +12,15 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class Posts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    private String img;
+    @OneToMany(targetEntity = Img.class)
+    private List<String> img;
     private int likeCount;
     private LocalDateTime postTime;
 
@@ -32,4 +33,25 @@ public class Posts {
 
     @OneToMany(targetEntity = Comments.class)
     private List<Comments> comments;
+
+    public Posts() {
+    }
+
+    public Posts(Long id,
+                 String content,
+                 List<String> img,
+                 int likeCount,
+                 LocalDateTime postTime,
+                 AccessModifier accessModifier,
+                 List<Likes> likes,
+                 List<Comments> comments) {
+        this.id = id;
+        this.content = content;
+        this.img = img;
+        this.likeCount = likeCount;
+        this.postTime = postTime;
+        this.accessModifier = accessModifier;
+        this.likes = likes;
+        this.comments = comments;
+    }
 }

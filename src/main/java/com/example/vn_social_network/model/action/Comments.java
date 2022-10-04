@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Comments {
 
     @Id
@@ -28,4 +27,13 @@ public class Comments {
 
     private String cmtContent;
 
+    public Comments() {
+    }
+
+    public Comments(Long id, AppUsers users, Posts posts, String cmtContent) {
+        this.id = id;
+        this.users = users;
+        this.posts = posts;
+        this.cmtContent = cmtContent;
+    }
 }

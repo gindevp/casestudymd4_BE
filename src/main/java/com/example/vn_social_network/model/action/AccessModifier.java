@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class AccessModifier {
 
     @Id
@@ -21,5 +20,12 @@ public class AccessModifier {
     @OneToMany(targetEntity = Posts.class)
     private List<Posts> posts;
 
+    public AccessModifier() {
+    }
 
+    public AccessModifier(Long id, String name, List<Posts> posts) {
+        this.id = id;
+        this.name = name;
+        this.posts = posts;
+    }
 }
