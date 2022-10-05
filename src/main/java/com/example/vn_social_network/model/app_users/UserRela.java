@@ -21,6 +21,8 @@ public class UserRela {
     @OneToMany(targetEntity = AppUsers.class)
     @JsonManagedReference
     private List<AppUsers> follower;
+
+
     @OneToMany(targetEntity = AppUsers.class)
     @JsonManagedReference
     private List<AppUsers> following;
