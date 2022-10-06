@@ -2,6 +2,11 @@ package com.example.vn_social_network.model.app_users;
 
 import com.example.vn_social_network.model.action.Comments;
 import com.example.vn_social_network.model.action.Likes;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import com.example.vn_social_network.model.action.Posts;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
@@ -10,11 +15,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(value = {"roles", "authorities"})
 
@@ -31,9 +39,9 @@ public class AppUsers {
     private String fullName;
     private String email;
     private String avatarUrl;
-    @ManyToOne
-//    @JsonBackReference
-    private AppRoles appRoles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<AppRoles> appRoles;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn()
     private UserInfo userInfo;
