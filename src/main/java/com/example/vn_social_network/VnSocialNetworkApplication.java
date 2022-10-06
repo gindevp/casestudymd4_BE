@@ -7,6 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class VnSocialNetworkApplication {
     public static void main(String[] args) {
         SpringApplication.run(VnSocialNetworkApplication.class, args);
+
+
+
+
     }
 
 }

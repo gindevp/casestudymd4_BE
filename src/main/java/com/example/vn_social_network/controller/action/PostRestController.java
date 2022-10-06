@@ -76,7 +76,8 @@ public class PostRestController {
                 postTime,
                 postsForm.getAccessModifier(),
                 postsForm.getLikes(),
-                postsForm.getComments()
+                postsForm.getComments(),
+                postsForm.getUsers()
         );
         postService.save(posts);
 

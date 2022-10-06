@@ -34,6 +34,9 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
 
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.3'
+
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 
     implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '4.20'

@@ -1,8 +1,7 @@
 package com.example.vn_social_network.model.action;
 
 import com.example.vn_social_network.model.app_users.AppUsers;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -14,18 +13,23 @@ import java.util.List;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(targetEntity = AppUsers.class)
-    @JsonManagedReference
-    private List<AppUsers> users;
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnore
+//    @JsonManagedReference
+    private AppUsers appUsers;
 
     @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "posts_id" )
+//    @JsonBackReference
+    @JoinColumn()
     private Posts posts;
 }
