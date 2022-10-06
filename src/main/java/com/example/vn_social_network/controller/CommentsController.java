@@ -33,7 +33,7 @@ public class CommentsController {
     @GetMapping("/post/{id}")
     private ResponseEntity<Iterable<Comments>> findCommentToPost(@PathVariable Long id){
         Optional<Posts> posts = postService.findById(id);
-        Iterable<Comments> comments = commentsService.findAllByPosts(posts);
+        Iterable<Comments> comments = commentsService.findAllByPosts(posts.get());
         return new ResponseEntity<>(comments,HttpStatus.OK);
     }
 

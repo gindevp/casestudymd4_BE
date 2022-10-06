@@ -9,6 +9,6 @@ public interface CommentsRepository extends JpaRepository<Comments,Long> {
 //   @Query(nativeQuery = true, value = "select * from comments where posts_id=?1")
 //    Iterable<Comments> findAllByPostsId(Long posts_id);
 
-    @Query(nativeQuery = true, value = "select * from comments where posts_id=?1")
+
     Iterable<Comments> findAllByPosts(Posts posts);
 }
