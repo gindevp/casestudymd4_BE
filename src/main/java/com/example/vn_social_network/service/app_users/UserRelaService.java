@@ -29,6 +29,6 @@ public class UserRelaService  implements IUserRelaService{
 
     @Override
     public void remove(Long id) {
-        userRelaRepository.findById(id);
+        userRelaRepository.deleteById(id);
     }
 }

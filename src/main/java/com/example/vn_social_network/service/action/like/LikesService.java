@@ -30,6 +30,6 @@ public class LikesService implements ILikesService {
 
     @Override
     public void remove(Long id) {
-        likesRepository.findById(id);
+        likesRepository.deleteById(id);
     }
 }
