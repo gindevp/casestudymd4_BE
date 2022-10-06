@@ -1,7 +1,11 @@
 package com.example.vn_social_network.model.action;
 
 
+import com.example.vn_social_network.model.app_users.AppUsers;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -14,6 +18,10 @@ import java.util.List;
 @Getter
 @Setter
 //@RequiredArgsConstructor
+
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Posts {
 
     @Id
@@ -21,22 +29,28 @@ public class Posts {
     private Long id;
     private String content;
     @OneToMany(targetEntity = Img.class)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<String> img;
     private int likeCount;
     private LocalDateTime postTime;
 
     @ManyToOne
-    @JoinColumn(name = "access_modifier_id")
+    @JoinColumn()
+//    @JsonBackReference
     private AccessModifier accessModifier;
 
     @OneToMany(targetEntity = Likes.class)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Likes> likes;
 
     @OneToMany(targetEntity = Comments.class)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Comments> comments;
+
+    @ManyToOne
+    @JoinColumn()
+//    @JsonBackReference
+    private AppUsers appUsers;
 
     public Posts() {
     }
@@ -48,7 +62,9 @@ public class Posts {
                  LocalDateTime postTime,
                  AccessModifier accessModifier,
                  List<Likes> likes,
-                 List<Comments> comments) {
+                 List<Comments> comments,
+                 AppUsers appUsers)
+    {
         this.id = id;
         this.content = content;
         this.img = img;
@@ -57,5 +73,6 @@ public class Posts {
         this.accessModifier = accessModifier;
         this.likes = likes;
         this.comments = comments;
+        this.appUsers = appUsers;
     }
 }

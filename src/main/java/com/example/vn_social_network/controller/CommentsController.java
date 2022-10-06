@@ -1,6 +1,8 @@
 package com.example.vn_social_network.controller;
 
 import com.example.vn_social_network.model.action.Comments;
+import com.example.vn_social_network.model.action.Posts;
+import com.example.vn_social_network.service.action.IPostService;
 import com.example.vn_social_network.service.comments.ICommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ public class CommentsController {
     @Autowired
     ICommentsService commentsService;
 
+    @Autowired
+    IPostService postService;
+
     @GetMapping
     public ResponseEntity<Iterable<Comments>> finAllComments(){
         List<Comments>comments=(List<Comments>) commentsService.findAll();
@@ -25,6 +30,13 @@ public class CommentsController {
         }
             return new ResponseEntity<>(comments,HttpStatus.OK);
     }
+    @GetMapping("/post/{id}")
+    private ResponseEntity<Iterable<Comments>> findCommentToPost(@PathVariable Long id){
+        Optional<Posts> posts = postService.findById(id);
+        Iterable<Comments> comments = commentsService.findAllByPosts(posts.get());
+        return new ResponseEntity<>(comments,HttpStatus.OK);
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Comments> finCommentsid(@PathVariable Long id){

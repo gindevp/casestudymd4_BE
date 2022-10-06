@@ -1,7 +1,7 @@
 package com.example.vn_social_network.model.action;
 
 import com.example.vn_social_network.model.app_users.AppUsers;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -10,21 +10,24 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Comments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "users_id")
-    @JsonBackReference
-    private AppUsers users;
+    @ManyToOne()
+    @JoinColumn()
+//    @JsonBackReference
+//    @JsonIgnore
+    private AppUsers appUsers;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "posts_id")
+//    @JsonIgnore
     @JsonBackReference
     private Posts posts;
 
@@ -33,10 +36,43 @@ public class Comments {
     public Comments() {
     }
 
-    public Comments(Long id, AppUsers users, Posts posts, String cmtContent) {
+    public Comments(Long id, AppUsers appUsers, Posts posts, String cmtContent) {
         this.id = id;
-        this.users = users;
+        this.appUsers = appUsers;
         this.posts = posts;
+        this.cmtContent = cmtContent;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public AppUsers getAppUsers() {
+        return appUsers;
+    }
+
+    public void setAppUsers(AppUsers appUsers) {
+        this.appUsers = appUsers;
+    }
+
+    public Posts getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Posts posts) {
+        this.posts = posts;
+    }
+
+    public String getCmtContent() {
+        return cmtContent;
+    }
+
+    public void setCmtContent(String cmtContent) {
         this.cmtContent = cmtContent;
     }
 }

@@ -7,6 +7,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import com.example.vn_social_network.model.action.Posts;
+import com.fasterxml.jackson.annotation.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,6 +25,10 @@ import java.util.Set;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(value = {"roles", "authorities"})
+
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class AppUsers {
 
     @Id
@@ -32,21 +41,30 @@ public class AppUsers {
     private String avatarUrl;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AppRoles> appRoles;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userInfo_id", referencedColumnName = "id")
+    @JoinColumn()
     private UserInfo userInfo;
 
-    @ManyToOne
-    @JoinColumn(name = "likes_id")
-    @JsonBackReference
-    private Likes likes;
+    @OneToMany(targetEntity = Likes.class)
+    @JsonIgnore
+//    @JsonBackReference
+    private List<Likes> likes;
 
     @ManyToOne
-    @JoinColumn(name ="userRela_id" )
-    @JsonBackReference
+    @JoinColumn()
+//    @JsonBackReference
     private UserRela userRela;
 
     @OneToMany(targetEntity = Comments.class)
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private List<Comments> comments;
+
+    @OneToMany(targetEntity = Posts.class)
+    @JsonIgnore
+//    @JsonManagedReference
+    private List<Posts> posts;
+
+
 }

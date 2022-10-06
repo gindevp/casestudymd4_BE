@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Socialbook - html css template</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
+    <script src="home.js"></script>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -54,22 +57,22 @@
             <hr>
             <div class="settings-links">
                 <img src="/images/setting.png" alt="" class="settings-icon">
-                <a href="#">Settings & Privary <img src="../static/images/arrow.png" alt=""></a>
+                <a href="#">Settings & Privary <img src="/images/arrow.png" alt=""></a>
             </div>
 
             <div class="settings-links">
                 <img src="/images/help.png" alt="" class="settings-icon">
-                <a href="#">Help & Support <img src="../static/images/arrow.png" alt=""></a>
+                <a href="#">Help & Support <img src="/images/arrow.png" alt=""></a>
             </div>
 
             <div class="settings-links">
                 <img src="/images/Display.png" alt="" class="settings-icon">
-                <a href="#">Display & Accessibility <img src="../static/images/arrow.png" alt=""></a>
+                <a href="#">Display & Accessibility <img src="/images/arrow.png" alt=""></a>
             </div>
 
             <div class="settings-links">
                 <img src="/images/logout.png" alt="" class="settings-icon">
-                <a href="#">Logout <img src="../static/images/arrow.png" alt=""></a>
+                <a href="#">Logout <img src="/images/arrow.png" alt=""></a>
             </div>
 
         </div>
@@ -99,7 +102,7 @@
 
         <!-- main-content------- -->
 
-        <div class="content-area">
+        <div class="content-area" id="posts">
             <div class="story-gallery">
                 <div class="story story1">
                     <img src="/images/upload.png" alt="">
@@ -142,6 +145,10 @@
                 </div>
             </div>
 
+
+
+<!--            -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
             <div class="status-field-container write-post-container">
                 <div class="user-profile-box">
                     <div class="user-profile">
@@ -172,7 +179,33 @@
                         <img src="/images/profile-pic.png " alt=""> <i class=" fas fa-caret-down"></i>
                     </div>
                 </div>
+
+
+                <div class="status-comment">
+                    <div class="comment-user">
+                        <img src="/images/profile-pic.png" alt="" class="comment-user__avt">
+                    </div>
+                    <input type="text" placeholder="Viết bình luận" id="status-comment">
+                </div>
+
+                <div class="status-comment-list">
+                    <div class="comment-user">
+                        <img src="/images/profile-pic.png" alt="" class="comment-user__avt">
+                        <div class="comment-user-ct">
+                            <span class="comment-user__name">Hiennguyen</span>
+                            <span class="comment-user-content">helloooooooooooooooooooooooo</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
             </div>
+
+
+<!--            &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
             <div class="status-field-container write-post-container">
                 <div class="user-profile-box">
                     <div class="user-profile">
