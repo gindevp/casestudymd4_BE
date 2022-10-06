@@ -1,5 +1,6 @@
 package com.example.vn_social_network.model.action;
 
+import com.example.vn_social_network.model.app_users.AppUsers;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -21,4 +22,5 @@ public class PostsForm {
     private AccessModifier accessModifier;
     private List<Likes> likes;
     private List<Comments> comments;
+    private AppUsers users;
 }

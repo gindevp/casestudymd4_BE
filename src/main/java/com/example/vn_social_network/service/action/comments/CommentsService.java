@@ -1,6 +1,7 @@
 package com.example.vn_social_network.service.action.comments;
 
 import com.example.vn_social_network.model.action.Comments;
+import com.example.vn_social_network.model.action.Posts;
 import com.example.vn_social_network.repository.CommentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,10 @@ public class CommentsService implements ICommentsService{
     @Override
     public void remove(Long id) {
         commentsRepository.findById(id);
+    }
+
+    @Override
+    public Iterable<Comments> findAllByPosts(Posts posts) {
+        return commentsRepository.findAllByPosts(posts);
     }
 }

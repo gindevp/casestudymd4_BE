@@ -5,12 +5,16 @@ import com.example.vn_social_network.service.app_users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
@@ -24,6 +28,7 @@ public class UserController {
 //  http://localhost:8080/api/users
     @GetMapping
     public ResponseEntity<Iterable<AppUsers>> showList(){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<AppUsers> customerList= (List<AppUsers>) userService.findAll();
         if(customerList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
