@@ -6,17 +6,18 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(value = {"roles", "authorities"})
 public class AppUsers {
@@ -29,9 +30,8 @@ public class AppUsers {
     private String fullName;
     private String email;
     private String avatarUrl;
-    @ManyToOne
-    @JsonBackReference
-    private AppRoles appRoles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<AppRoles> appRoles;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userInfo_id", referencedColumnName = "id")
     private UserInfo userInfo;
@@ -49,6 +49,4 @@ public class AppUsers {
     @OneToMany(targetEntity = Comments.class)
     @JsonManagedReference
     private List<Comments> comments;
-
-
 }

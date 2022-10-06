@@ -16,4 +16,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<AppUsers, Long> {
     @Query("select (count(a) > 0) from AppUsers a where a.userName = ?1")
     Boolean existsByUserName(String name);
+    AppUsers findByUserName(String username);
 }
