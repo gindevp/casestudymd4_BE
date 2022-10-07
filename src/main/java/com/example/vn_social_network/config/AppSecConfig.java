@@ -39,6 +39,8 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers("/posts").hasRole("ADMIN")
                 .and()
+                .authorizeRequests().antMatchers("/api/**add ").hasRole("ADMIN")
+                .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/dangxuat"));
                http.csrf().disable();
 
