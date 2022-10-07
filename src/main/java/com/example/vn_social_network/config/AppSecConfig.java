@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -34,9 +35,17 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login/**","/register").permitAll()
-                .and().authorizeRequests().anyRequest().authenticated()
-                .and().csrf().disable();
+        http.authorizeRequests().antMatchers("/login").permitAll()
+                .and()
+//                .authorizeRequests().antMatchers("/home/**").hasRole("ADMIN")
+//                .and()
+//                .authorizeRequests().antMatchers("/api/users/**").hasRole("ADMIN")
+//                .and()
+                .authorizeRequests().antMatchers("/posts/**").hasRole("ADMIN")
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/dangxuat"));
+
+                http.csrf().disable();
 
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

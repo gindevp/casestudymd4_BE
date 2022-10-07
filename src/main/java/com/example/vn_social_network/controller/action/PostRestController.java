@@ -23,6 +23,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/posts")
+@CrossOrigin("*")
 public class PostRestController {
     @Value("C:\\Users\\Acer\\OneDrive\\Desktop\\CG\\Project\\Md4\\img\\")
     private String fileUpload;
