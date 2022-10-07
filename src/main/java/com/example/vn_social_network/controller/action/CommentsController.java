@@ -58,7 +58,7 @@ public class CommentsController {
         if(!commentsOptional.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        comments.setCmtContent(commentsOptional.get().getCmtContent());
+        comments.setId(commentsOptional.get().getId());
         return new ResponseEntity<>(commentsService.save(comments),HttpStatus.OK);
     }
 

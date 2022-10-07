@@ -1,6 +1,7 @@
 package com.example.vn_social_network.service.action.like;
 
 import com.example.vn_social_network.model.action.Likes;
+import com.example.vn_social_network.model.action.Posts;
 import com.example.vn_social_network.repository.ILikesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class LikesService implements ILikesService {
 
     @Override
     public void remove(Long id) {
-        likesRepository.deleteById(id);
+        likesRepository.disableByStatus(id);
     }
+
 }
