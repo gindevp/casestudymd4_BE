@@ -58,10 +58,12 @@ public class CommentsController {
         if(!commentsOptional.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        comments.setCmtContent(commentsOptional.get().getCmtContent());
+        comments.setId(commentsOptional.get().getId());
+//        comments.setCmtContent(commentsOptional.get().getCmtContent());
         return new ResponseEntity<>(commentsService.save(comments),HttpStatus.OK);
     }
 
+//    @DeleteMapping("/{id}")
     @DeleteMapping("/{id}")
     public ResponseEntity<Comments> deleteComments (@PathVariable Long id){
         Optional<Comments> commentsOptional = commentsService.findById(id);

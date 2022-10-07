@@ -29,7 +29,7 @@ public class CommentsService implements ICommentsService{
 
     @Override
     public void remove(Long id) {
-        commentsRepository.findById(id);
+        commentsRepository.deleteById(id);
     }
 
     @Override

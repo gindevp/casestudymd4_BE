@@ -1,7 +1,6 @@
 package com.example.vn_social_network.controller;
 
 import com.example.vn_social_network.model.app_users.AppUsers;
-import com.example.vn_social_network.model.app_users.U;
 import com.example.vn_social_network.model.dto.UserToken;
 import com.example.vn_social_network.service.users.UserService;
 import com.example.vn_social_network.service.users.JwtService;
@@ -37,7 +36,7 @@ public class LoginController {
         return new ResponseEntity<>(appUsers, HttpStatus.OK);
     }
     @PostMapping(value = "/login")
-    public ResponseEntity<UserToken> login(@RequestBody U appUser){
+    public ResponseEntity<UserToken> login(@RequestBody AppUsers appUser){
         try {
             // Tạo ra 1 đối tượng Authentication.
             Authentication authentication = authenticationManager.authenticate(
