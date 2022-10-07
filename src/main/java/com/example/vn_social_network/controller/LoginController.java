@@ -2,8 +2,8 @@ package com.example.vn_social_network.controller;
 
 import com.example.vn_social_network.model.app_users.AppUsers;
 import com.example.vn_social_network.model.dto.UserToken;
-import com.example.vn_social_network.service.users.UserService;
-import com.example.vn_social_network.service.users.JwtService;
+import com.example.vn_social_network.service.app_users.JwtService;
+import com.example.vn_social_network.service.app_users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

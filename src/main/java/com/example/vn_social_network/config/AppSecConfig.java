@@ -1,7 +1,7 @@
 package com.example.vn_social_network.config;
 
 import com.example.vn_social_network.config.filter.JwtAuthenticationFilter;
-import com.example.vn_social_network.service.users.UserService;
+import com.example.vn_social_network.service.app_users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
