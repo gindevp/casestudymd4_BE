@@ -27,14 +27,14 @@ public class LoginController {
     UserService appUserService;
 
 
-    @GetMapping("/a")
-    public ResponseEntity<AppUsers> appUsersResponseEntity(){
-        AppUsers appUsers = new AppUsers();
-        appUsers.setUserName("d");
-        appUsers.setPassword("d");
-        System.out.println("A");
-        return new ResponseEntity<>(appUsers, HttpStatus.OK);
-    }
+//    @GetMapping("/a")
+//    public ResponseEntity<AppUsers> appUsersResponseEntity(){
+//        AppUsers appUsers = new AppUsers();
+//        appUsers.setUserName("d");
+//        appUsers.setPassword("d");
+//        System.out.println("A");
+//        return new ResponseEntity<>(appUsers, HttpStatus.OK);
+//    }
     @PostMapping(value = "/login")
     public ResponseEntity<UserToken> login(@RequestBody AppUsers appUser){
         try {

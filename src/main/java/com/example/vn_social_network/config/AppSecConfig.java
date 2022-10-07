@@ -37,15 +37,10 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login").permitAll()
                 .and()
-//                .authorizeRequests().antMatchers("/home/**").hasRole("ADMIN")
-//                .and()
-//                .authorizeRequests().antMatchers("/api/users/**").hasRole("ADMIN")
-//                .and()
-                .authorizeRequests().antMatchers("/posts/**").hasRole("ADMIN")
+                .authorizeRequests().antMatchers("/posts").hasRole("ADMIN")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/dangxuat"));
-
-                http.csrf().disable();
+               http.csrf().disable();
 
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
