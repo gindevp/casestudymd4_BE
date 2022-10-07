@@ -30,19 +30,36 @@ public class LikesController {
         }
         return new ResponseEntity<>(likes,HttpStatus.OK);
     }
-
-    @PostMapping("/{id}")
-    public ResponseEntity<Likes>saveLikes(@PathVariable Likes likes){
+    @PostMapping
+    public ResponseEntity<Likes>saveLikes(@RequestBody Likes likes){
         return new ResponseEntity<>(likesService.save(likes),HttpStatus.CREATED);
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Likes> deleteLikes(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Likes> enableLikes(@PathVariable Long id){
         Optional<Likes>likesOptional=likesService.findById(id);
         if (!likesOptional.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        likesService.remove(id);
+        likesOptional.get().setStatus(true);
+        return new ResponseEntity<>(likesOptional.get(),HttpStatus.OK);
+    }
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Likes> deleteLikes(@PathVariable Long id){
+//        Optional<Likes>likesOptional=likesService.findById(id);
+//        if (!likesOptional.isPresent()){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        likesService.remove(id);
+//        return new ResponseEntity<>(likesOptional.get(),HttpStatus.OK);
+//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Likes> disableLikes(@PathVariable Long id){
+        Optional<Likes>likesOptional=likesService.findById(id);
+        if (!likesOptional.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        likesOptional.get().setStatus(false);
         return new ResponseEntity<>(likesOptional.get(),HttpStatus.OK);
     }
 }
