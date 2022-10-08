@@ -28,7 +28,7 @@ public class Comments {
     @ManyToOne()
     @JoinColumn(name = "posts_id")
 //    @JsonIgnore
-    @JsonBackReference
+//    @JsonBackReference
     private Posts posts;
 
     private String cmtContent;
