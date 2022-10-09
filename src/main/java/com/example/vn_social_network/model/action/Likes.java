@@ -18,6 +18,7 @@ import java.util.List;
         property = "id")
 public class Likes {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,4 +33,6 @@ public class Likes {
 //    @JsonBackReference
     @JoinColumn()
     private Posts posts;
+
+    private Boolean status;
 }
