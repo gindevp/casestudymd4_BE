@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
 //@RequiredArgsConstructor
 
 @JsonIdentityInfo(
@@ -47,7 +45,7 @@ public class Posts {
     @JsonBackReference
     private List<Comments> comments;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn()
 //    @JsonBackReference
     private AppUsers appUsers;
@@ -73,6 +71,79 @@ public class Posts {
         this.accessModifier = accessModifier;
         this.likes = likes;
         this.comments = comments;
+        this.appUsers = appUsers;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public List<String> getImg() {
+        return img;
+    }
+
+    public void setImg(List<String> img) {
+        this.img = img;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public LocalDateTime getPostTime() {
+        return postTime;
+    }
+
+    public void setPostTime(LocalDateTime postTime) {
+        this.postTime = postTime;
+    }
+
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
+    public void setAccessModifier(AccessModifier accessModifier) {
+        this.accessModifier = accessModifier;
+    }
+
+    public List<Likes> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Likes> likes) {
+        this.likes = likes;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
+    public AppUsers getAppUsers() {
+        return appUsers;
+    }
+
+    public void setAppUsers(AppUsers appUsers) {
         this.appUsers = appUsers;
     }
 }
