@@ -9,21 +9,21 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
-@Setter
-@RequiredArgsConstructor
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
-public class Img {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String url;
-
-    @ManyToOne
-    @JoinColumn(name = "posts_id" )
+//@Entity
+//@Getter
+//@Setter
+//@RequiredArgsConstructor
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
+//public class Img {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//    private String url;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "posts_id" )
 //    @JsonBackReference
-    private Posts posts;
-}
+//    private Posts posts;
+//}

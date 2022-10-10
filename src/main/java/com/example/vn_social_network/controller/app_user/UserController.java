@@ -22,10 +22,11 @@ import java.util.Set;
 public class UserController {
     @Autowired
     UserService userService;
-//    @GetMapping()
-//    public ModelAndView getUser(){
-//        return new ModelAndView("user");
-//    }
+
+    @GetMapping("/profile/{username}")
+    public ResponseEntity<AppUsers> findUserByName(@PathVariable String username){
+        return new ResponseEntity<>(userService.findByUserName(username),HttpStatus.OK);
+    }
 
 
 //  http://localhost:8080/api/users
