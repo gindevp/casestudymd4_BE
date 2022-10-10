@@ -22,14 +22,14 @@ public class CommentsController {
     @Autowired
     IPostService postService;
 
-    @GetMapping
-    public ResponseEntity<Iterable<Comments>> finAllComments(){
-        List<Comments>comments=(List<Comments>) commentsService.findAll();
-        if(comments.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-            return new ResponseEntity<>(comments,HttpStatus.OK);
-    }
+//    @GetMapping
+//    public ResponseEntity<Iterable<Comments>> finAllComments(){
+//        List<Comments>comments=(List<Comments>) commentsService.findAll();
+//        if(comments.isEmpty()){
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//            return new ResponseEntity<>(comments,HttpStatus.OK);
+//    }
     @GetMapping("/post/{id}")
     private ResponseEntity<Iterable<Comments>> findCommentToPost(@PathVariable Long id){
         Optional<Posts> posts = postService.findById(id);

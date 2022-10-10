@@ -6,6 +6,7 @@ import com.example.vn_social_network.repository.CommentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,4 +37,11 @@ public class CommentsService implements ICommentsService{
     public Iterable<Comments> findAllByPosts(Posts posts) {
         return commentsRepository.findAllByPosts(posts);
     }
+
+    @Override
+    public List<Comments> findAllByTimeDESC(Posts posts) {
+        return commentsRepository.findALlByTimeDESC(posts);
+    }
+
+
 }

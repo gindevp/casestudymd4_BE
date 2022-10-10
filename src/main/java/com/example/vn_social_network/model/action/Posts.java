@@ -20,16 +20,16 @@ import java.util.List;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class Posts {
+public class Posts implements Comparable<Posts>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    @OneToMany(targetEntity = Img.class)
+//    @OneToOne(targetEntity = Img.class)
 //    @JsonManagedReference
-    private List<String> img;
-    private int likeCount;
+    private String img;
+//    private int likeCount;
     private LocalDateTime postTime;
 
     @ManyToOne
@@ -55,8 +55,7 @@ public class Posts {
 
     public Posts(Long id,
                  String content,
-                 List<String> img,
-                 int likeCount,
+                 String img,
                  LocalDateTime postTime,
                  AccessModifier accessModifier,
                  List<Likes> likes,
@@ -66,7 +65,6 @@ public class Posts {
         this.id = id;
         this.content = content;
         this.img = img;
-        this.likeCount = likeCount;
         this.postTime = postTime;
         this.accessModifier = accessModifier;
         this.likes = likes;
@@ -91,20 +89,12 @@ public class Posts {
         this.content = content;
     }
 
-    public List<String> getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(List<String> img) {
+    public void setImg(String img) {
         this.img = img;
-    }
-
-    public int getLikeCount() {
-        return likeCount;
-    }
-
-    public void setLikeCount(int likeCount) {
-        this.likeCount = likeCount;
     }
 
     public LocalDateTime getPostTime() {
@@ -145,5 +135,10 @@ public class Posts {
 
     public void setAppUsers(AppUsers appUsers) {
         this.appUsers = appUsers;
+    }
+
+    @Override
+    public int compareTo(Posts o) {
+        return getPostTime().compareTo(o.getPostTime());
     }
 }
