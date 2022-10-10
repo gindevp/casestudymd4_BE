@@ -36,7 +36,7 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login","/api/**").permitAll()
+        http.authorizeRequests().antMatchers("/login","/api/users/register").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/posts").hasRole("ADMIN")
                 .and()
