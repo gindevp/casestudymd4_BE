@@ -7,6 +7,7 @@ import com.example.vn_social_network.service.IGeneralService;
 public interface IUserService extends IGeneralService<AppUsers> {
 
 Boolean existsByUserName(String name);
+AppUsers findByMail(String email);
 }
 
 
