@@ -1,5 +1,6 @@
 package com.example.vn_social_network.controller.app_user;
 
+import com.example.vn_social_network.model.app_users.AppRoles;
 import com.example.vn_social_network.model.app_users.AppUsers;
 import com.example.vn_social_network.service.app_users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @CrossOrigin("*")
@@ -39,6 +42,11 @@ public class UserController {
 // http://localhost:8080/api/users/register
     @PostMapping("/register")
     public ResponseEntity<AppUsers> addUser(@RequestBody Optional<AppUsers> users){
+        Set<AppRoles> roles= new HashSet<>();
+        AppRoles appRoles= new AppRoles();
+        appRoles.setId(1L);
+        roles.add(appRoles);
+        users.get().setAppRoles(roles);
         if(users.isPresent()){
             if(!userService.existsByUserName(users.get().getUserName())){
                 return new ResponseEntity<>(userService.save(users.get()), HttpStatus.CREATED);
