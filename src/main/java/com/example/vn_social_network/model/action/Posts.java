@@ -43,6 +43,7 @@ public class Posts implements Comparable<Posts>{
 
     @OneToMany(targetEntity = Comments.class)
     @JsonBackReference
+//    @JsonManagedReference
     private List<Comments> comments;
 
     @ManyToOne()
