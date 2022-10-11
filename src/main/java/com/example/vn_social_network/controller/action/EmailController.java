@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/mail")
 public class EmailController {
@@ -18,9 +20,9 @@ public class EmailController {
     @Autowired
     private MailService mailService;
 // http://localhost:8080/mail/forgotpass
-    @GetMapping("/forgotpass")
-    public ResponseEntity<Mail> fogotPass(@RequestBody AppUsers appUser){
-        AppUsers appUsers=userService.findByMail(appUser.getEmail());
+    @PostMapping("/forgotpass")
+    public ResponseEntity<Mail> fogotPass(@RequestBody Optional<AppUsers> appUser){
+        AppUsers appUsers=userService.findByMail(appUser.get().getEmail());
         Mail mail = new Mail();
         mail.setMailFrom("nguyenhuuquyet07092001@gmail.com");
         mail.setMailTo(appUsers.getEmail());
