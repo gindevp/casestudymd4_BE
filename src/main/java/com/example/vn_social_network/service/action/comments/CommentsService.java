@@ -38,10 +38,6 @@ public class CommentsService implements ICommentsService{
         return commentsRepository.findAllByPosts(posts);
     }
 
-    @Override
-    public List<Comments> findAllByTimeDESC(Posts posts) {
-        return commentsRepository.findALlByTimeDESC(posts);
-    }
 
 
 }

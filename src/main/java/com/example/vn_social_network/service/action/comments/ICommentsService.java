@@ -10,5 +10,4 @@ import java.util.List;
 public interface ICommentsService extends IGeneralService<Comments> {
 
     Iterable<Comments> findAllByPosts(Posts posts);
-    public List<Comments> findAllByTimeDESC(Posts posts);
 }
