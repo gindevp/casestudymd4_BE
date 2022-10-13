@@ -4,11 +4,7 @@ package com.example.vn_social_network.model.action;
 import com.example.vn_social_network.model.app_users.AppUsers;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,7 +22,6 @@ public class Posts implements Comparable<Posts>{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-
 //    @OneToOne(targetEntity = Img.class)
 //    @JsonManagedReference
     private String img;

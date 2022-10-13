@@ -1,8 +1,6 @@
 package com.example.vn_social_network.service.action.post;
 
-import com.example.vn_social_network.model.action.Comments;
 import com.example.vn_social_network.model.action.Posts;
-import com.example.vn_social_network.repository.CommentsRepository;
 import com.example.vn_social_network.repository.IPostsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,9 +15,6 @@ public class PostService implements IPostService {
 
     @Autowired
     private IPostsRepository postsRepository;
-
-    @Autowired
-    private CommentsRepository commentsRepository;
 
     @Override
     public Iterable<Posts> findAll() {
@@ -55,13 +50,6 @@ public class PostService implements IPostService {
 
     @Override
     public Page<Posts> findAllByContent(String content, Pageable pageable) {
-        return postsRepository.findAllByContentContaining(content, pageable);
+        return postsRepository.findAllByContent(content, pageable);
     }
-
-
-    public List<Comments> findALlCommentsByPost(Posts posts) {
-        return (List<Comments>) commentsRepository.findAllByPosts(posts);
-    }
-
-
 }

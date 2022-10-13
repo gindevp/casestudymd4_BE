@@ -38,12 +38,6 @@ public class UserService implements IUserService, UserDetailsService {
     public Boolean existsByUserName(String name) {
         return userRepository.existsByUserName(name);
     }
-
-    @Override
-    public AppUsers findByMail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
     public AppUsers findByUserName(String username){
         AppUsers appUser = userRepository.findByUserName(username);
         return appUser;

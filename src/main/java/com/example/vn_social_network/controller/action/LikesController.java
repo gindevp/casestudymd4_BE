@@ -2,9 +2,7 @@ package com.example.vn_social_network.controller.action;
 
 
 import com.example.vn_social_network.model.action.Likes;
-import com.example.vn_social_network.model.action.Posts;
 import com.example.vn_social_network.service.action.like.ILikesService;
-import com.example.vn_social_network.service.action.post.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

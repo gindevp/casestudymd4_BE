@@ -3,8 +3,8 @@ package com.example.vn_social_network.repository;
 import com.example.vn_social_network.model.action.Comments;
 import com.example.vn_social_network.model.action.Posts;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
