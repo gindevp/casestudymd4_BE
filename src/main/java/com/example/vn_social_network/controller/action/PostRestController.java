@@ -1,6 +1,11 @@
 package com.example.vn_social_network.controller.action;
 
+import com.example.vn_social_network.model.action.AccessModifier;
+import com.example.vn_social_network.model.action.Comments;
+import com.example.vn_social_network.model.action.Likes;
 import com.example.vn_social_network.model.action.Posts;
+import com.example.vn_social_network.model.app_users.AppUsers;
+import com.example.vn_social_network.model.dto.PostDTO;
 import com.example.vn_social_network.service.action.post.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +44,35 @@ public class PostRestController {
 
         return new ResponseEntity<>(postsList, HttpStatus.OK);
     }
+
+//    @GetMapping
+//    public ResponseEntity<Iterable<PostDTO>>findAllPostsAndComments(Pageable pageable){
+//        List<Posts> posts = postService.findAllByTimeDESC();
+//        List<PostDTO> postDTOS = new ArrayList<>();
+//        for(int i=0; i<posts.size(); i++){
+//            Long id= posts.get(i).getId();
+//            String content= posts.get(i).getContent();
+//            String img =posts.get(i).getImg();
+//            LocalDateTime postTime=posts.get(i).getPostTime();
+//            AccessModifier accessModifier=posts.get(i).getAccessModifier();
+//            List<Likes> likes= posts.get(i).getLikes();
+//            List<Comments> comments= posts.get(i).getComments();
+//            AppUsers appUsers= posts.get(i).getAppUsers();
+//            Long id1 = posts.get(i).getId();
+//            Optional<Posts> posts1 = postService.findById(id1);
+//            List<Comments> commentsList = postService.findALlCommentsByPost(posts1.get());
+//            int commentCount= commentsList.size();
+//            PostDTO postDTO = new PostDTO(id,content,img,postTime,accessModifier,likes,comments,appUsers,commentCount);
+//            postDTOS.add(postDTO);
+//        }
+//        return new ResponseEntity<>(postDTOS,HttpStatus.OK);
+//    }
+
+//    @GetMapping("/commentsCount")
+//    public ResponseEntity<String> commentsCount(){
+//        return new ResponseEntity<>(postService.commentsCount(),HttpStatus.OK);
+//    }
+
 
 
 

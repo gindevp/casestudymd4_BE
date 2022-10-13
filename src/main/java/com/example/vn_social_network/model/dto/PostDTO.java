@@ -1,68 +1,36 @@
-package com.example.vn_social_network.model.action;
+package com.example.vn_social_network.model.dto;
 
-
+import com.example.vn_social_network.model.action.AccessModifier;
+import com.example.vn_social_network.model.action.Comments;
+import com.example.vn_social_network.model.action.Likes;
 import com.example.vn_social_network.model.app_users.AppUsers;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-//@RequiredArgsConstructor
-
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
-public class Posts implements Comparable<Posts>{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PostDTO {
     private Long id;
     private String content;
-
-//    @OneToOne(targetEntity = Img.class)
-//    @JsonManagedReference
     private String img;
-//    private int likeCount;
     private LocalDateTime postTime;
-
-    @ManyToOne
-    @JoinColumn()
-//    @JsonBackReference
     private AccessModifier accessModifier;
-
-    @OneToMany(targetEntity = Likes.class)
-//    @JsonManagedReference
     private List<Likes> likes;
-
-    @OneToMany(targetEntity = Comments.class)
-    @JsonBackReference
     private List<Comments> comments;
-
-    @ManyToOne()
-    @JoinColumn()
-//    @JsonBackReference
     private AppUsers appUsers;
+    private int commentCount;
 
-    public Posts() {
+    public PostDTO() {
     }
 
-    public Posts(Long id,
-                 String content,
-                 String img,
-                 LocalDateTime postTime,
-                 AccessModifier accessModifier,
-                 List<Likes> likes,
-                 List<Comments> comments,
-                 AppUsers appUsers)
-    {
+    public PostDTO(Long id,
+                   String content,
+                   String img,
+                   LocalDateTime postTime,
+                   AccessModifier accessModifier,
+                   List<Likes> likes,
+                   List<Comments> comments,
+                   AppUsers appUsers,
+                   int commentCount) {
         this.id = id;
         this.content = content;
         this.img = img;
@@ -71,8 +39,8 @@ public class Posts implements Comparable<Posts>{
         this.likes = likes;
         this.comments = comments;
         this.appUsers = appUsers;
+        this.commentCount = commentCount;
     }
-
 
     public Long getId() {
         return id;
@@ -138,8 +106,11 @@ public class Posts implements Comparable<Posts>{
         this.appUsers = appUsers;
     }
 
-    @Override
-    public int compareTo(Posts o) {
-        return getPostTime().compareTo(o.getPostTime());
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 }
