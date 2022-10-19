@@ -1,6 +1,12 @@
 package com.example.vn_social_network.controller.action;
 
+import com.example.vn_social_network.model.action.AccessModifier;
+import com.example.vn_social_network.model.action.Comments;
+import com.example.vn_social_network.model.action.Likes;
 import com.example.vn_social_network.model.action.Posts;
+import com.example.vn_social_network.model.app_users.AppUsers;
+import com.example.vn_social_network.model.dto.PostDTO;
+import com.example.vn_social_network.service.action.comments.ICommentsService;
 import com.example.vn_social_network.service.action.post.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,18 +31,41 @@ public class PostRestController {
     @Autowired
     private IPostService postService;
 
-    @GetMapping
-    public ResponseEntity<Iterable<Posts>> findAllPosts(@RequestParam Optional<String> search, Pageable pageable) {
-//        Page<Posts> posts = postService.findAll(pageable);
-        List<Posts> postsList = postService.findAllByTimeDESC();
-        if (postsList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        if (search.isPresent()) {
-            return new ResponseEntity<>(postService.findAllByContent(search.get(), pageable), HttpStatus.OK);
-        }
+    @Autowired
+    private ICommentsService commentsService;
 
-        return new ResponseEntity<>(postsList, HttpStatus.OK);
+//    @GetMapping
+//    public ResponseEntity<Iterable<Posts>> findAllPosts(@RequestParam Optional<String> search, Pageable pageable) {
+////        Page<Posts> posts = postService.findAll(pageable);
+//        List<Posts> postsList = postService.findAllByTimeDESC();
+//        if (postsList.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        if (search.isPresent()) {
+//            return new ResponseEntity<>(postService.findAllByContent(search.get(), pageable), HttpStatus.OK);
+//        }
+//
+//        return new ResponseEntity<>(postsList, HttpStatus.OK);
+//    }
+
+    @GetMapping
+    public ResponseEntity<List<PostDTO>> finfAll(){
+        List<Posts> posts = postService.findAllByTimeDESC();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        for(int i = 0; i<posts.size(); i++){
+            Long id = posts.get(i).getId();
+            Optional<Posts> posts1 = postService.findById(id);
+            String content = posts.get(i).getContent();
+            String img = posts.get(i).getImg();
+            LocalDateTime postTime = posts.get(i).getPostTime();
+            AccessModifier accessModifier = posts.get(i).getAccessModifier();
+            AppUsers appUsers = posts.get(i).getAppUsers();
+            List<Comments> commentsList = (List<Comments>) commentsService.findAllByPosts(posts1.get());
+            int countCommemnt = commentsList.size();
+            PostDTO postDTO = new PostDTO(id,content,img,postTime,accessModifier,appUsers,countCommemnt);
+            postDTOList.add(postDTO);
+        }
+        return new ResponseEntity<>(postDTOList,HttpStatus.OK);
     }
 
 

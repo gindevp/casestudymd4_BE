@@ -1,15 +1,16 @@
 package com.example.vn_social_network.model.action;
 
 import com.example.vn_social_network.model.app_users.AppUsers;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class Comments {
 
     @Id
@@ -25,7 +26,7 @@ public class Comments {
     @ManyToOne()
     @JoinColumn(name = "posts_id")
 //    @JsonIgnore
-//    @JsonBackReference
+    @JsonBackReference
     private Posts posts;
 
     private String cmtContent;

@@ -4,6 +4,7 @@ package com.example.vn_social_network.model.action;
 import com.example.vn_social_network.model.app_users.AppUsers;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -13,9 +14,9 @@ import java.util.List;
 @Entity
 //@RequiredArgsConstructor
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class Posts implements Comparable<Posts>{
 
     @Id
@@ -38,7 +39,8 @@ public class Posts implements Comparable<Posts>{
     private List<Likes> likes;
 
     @OneToMany(targetEntity = Comments.class)
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonManagedReference
     private List<Comments> comments;
 
     @ManyToOne()

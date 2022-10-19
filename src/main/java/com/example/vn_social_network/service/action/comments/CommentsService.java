@@ -13,7 +13,7 @@ public class CommentsService implements ICommentsService{
     @Autowired
     CommentsRepository commentsRepository;
     @Override
-    public Iterable findAll() {
+    public Iterable<Comments> findAll() {
         return commentsRepository.findAll();
     }
 
