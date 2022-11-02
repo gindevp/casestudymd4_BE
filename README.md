@@ -10,3 +10,12 @@ https://github.com/NguyenManhHien12797/caseStudy4_FE
 Thực tế:
 - Giống facebook
 - Còn sơ xài do thời gian có hạn
+
+config:
+- Tạo local.env
+JDBC_DATABASE_URL=jdbc:mysql://localhost:3306/VN_Social_Network?createDatabaseIfNotExist=true&useUnicode=yes&characterEncoding=UTF-8
+JDBC_DATABASE_USERNAME=root
+JDBC_DATABASE_PASSWOERD=123456
+JDBC_DATABASE_DRIVER=com.mysql.cj.jdbc.Driver
+SPRING_JPA_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5Dialect
+linkanh=C:\\Users\\Huu Quyet\\OneDrive\\Máy tính\\case_study4\\caseStudy4_FE\\images\\
