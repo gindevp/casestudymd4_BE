@@ -1,6 +1,5 @@
 package com.example.vn_social_network.service.app_users;
 
-import com.example.vn_social_network.service.app_users.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;

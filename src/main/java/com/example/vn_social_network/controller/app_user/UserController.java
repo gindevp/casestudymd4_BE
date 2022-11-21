@@ -2,19 +2,18 @@ package com.example.vn_social_network.controller.app_user;
 
 import com.example.vn_social_network.model.app_users.AppRoles;
 import com.example.vn_social_network.model.app_users.AppUsers;
+import com.example.vn_social_network.model.app_users.UserInfo;
 import com.example.vn_social_network.service.app_users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -32,22 +31,26 @@ public class UserController {
 //  http://localhost:8080/api/users
     @GetMapping
     public ResponseEntity<Iterable<AppUsers>> showList(){
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<AppUsers> customerList= (List<AppUsers>) userService.findAll();
-        if(customerList.isEmpty()){
+//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<AppUsers> appUsers= (List<AppUsers>) userService.findAll();
+        if(appUsers.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         }
-        return new ResponseEntity<>(customerList,HttpStatus.OK);
+        return new ResponseEntity<>(appUsers,HttpStatus.OK);
     }
 // http://localhost:8080/api/users/register
     @PostMapping("/register")
     public ResponseEntity<AppUsers> addUser(@RequestBody Optional<AppUsers> users){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setCreatedAt(LocalDate.now());
+        userInfo.setActive(true);
         Set<AppRoles> roles= new HashSet<>();
         AppRoles appRoles= new AppRoles();
         appRoles.setId(1L);
         roles.add(appRoles);
         users.get().setAppRoles(roles);
+        users.get().setUserInfo(userInfo);
         if(users.isPresent()){
             if(!userService.existsByUserName(users.get().getUserName())){
                 return new ResponseEntity<>(userService.save(users.get()), HttpStatus.CREATED);
