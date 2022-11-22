@@ -1,4 +1,4 @@
-//package com.example.vn_social_network.model.app_users;
+package com.example.vn_social_network.model.app_users;//package com.example.vn_social_network.model.app_users;
 //
 //public class U {
 //    private String userName;
